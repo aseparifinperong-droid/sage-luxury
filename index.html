@@ -75,37 +75,45 @@
   display:flex;
   align-items:center;
   justify-content:center;
-  text-align:center;
-  background:url('img/bg-opening.jpg') center/cover no-repeat;
+  background:url('img/bg-opening.jpg') center center / cover no-repeat;
   overflow:hidden;
 }
 
+/* overlay lembut */
 .opening::before{
   content:'';
   position:absolute;
   inset:0;
   background:linear-gradient(
     to bottom,
-    rgba(248,245,239,.35),
+    rgba(248,245,239,.4),
     rgba(248,245,239,.9)
   );
 }
 
-/* CONTENT WRAPPER */
+/* CONTENT WRAPPER – CENTER MATI */
 .opening-inner{
   position:relative;
   z-index:2;
-  max-width:420px;
   width:100%;
+  max-width:420px;
   padding:20px;
+  text-align:center;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  /* trik visual center */
+  transform:translateY(12px);
 }
 
 /* ORNAMENT */
 .opening-ornament{
-  width:260px;
-  margin:0 auto 18px;
-  opacity:.85;
-  animation:fadeUp 1s ease forwards;
+  width:240px;
+  margin-bottom:14px;
+  opacity:.9;
 }
 
 /* SUBTITLE */
@@ -113,38 +121,30 @@
   display:block;
   font-size:11px;
   letter-spacing:3px;
-  margin-bottom:14px;
-  opacity:0;
-  animation:fadeUp .8s ease forwards;
-  animation-delay:.2s;
+  margin-bottom:6px;
+  opacity:.85;
 }
 
 /* NAME */
 .opening-name{
   font-family:'Playfair Display',serif;
-  font-size:40px;
-  margin-bottom:14px;
+  font-size:38px;
+  line-height:1.15;
+  margin-bottom:10px;
 }
 
-/* NAME ANIMATION */
+/* NAME PART (fade satu-satu tetap aman) */
 .name-part,
 .name-separator{
   display:inline-block;
-  opacity:0;
-  transform:translateY(20px);
-  animation:fadeName .7s ease forwards;
 }
-
-.name-part:nth-child(1){ animation-delay:.6s; }
-.name-separator{ animation-delay:1.1s; margin:0 6px; }
-.name-part:nth-child(3){ animation-delay:1.6s; }
 
 /* DIVIDER */
 .opening-divider{
-  width:56px;
+  width:54px;
   height:1px;
   background:#7A8F7A;
-  margin:12px auto;
+  margin:10px auto;
   opacity:.6;
 }
 
@@ -152,30 +152,24 @@
 .opening-date{
   font-size:13px;
   letter-spacing:1px;
-  margin-bottom:20px;
-  opacity:0;
-  animation:fadeUp .7s ease forwards;
-  animation-delay:2s;
+  margin-bottom:18px;
 }
 
 /* BUTTON */
 .opening .btn{
-  opacity:0;
-  animation:fadeUp .7s ease forwards;
-  animation-delay:2.4s;
+  margin-top:6px;
 }
 
 /* SCROLL HINT */
 .scroll-hint{
   position:absolute;
-  bottom:28px;
+  bottom:26px;
   left:50%;
   transform:translateX(-50%);
+  text-align:center;
   font-size:10px;
   letter-spacing:2px;
-  opacity:0;
-  animation:fadeIn .8s ease forwards;
-  animation-delay:3s;
+  opacity:.7;
 }
 
 .scroll-hint .arrow{
@@ -185,23 +179,10 @@
   border-bottom:2px solid #7A8F7A;
   transform:rotate(-45deg);
   margin:6px auto 0;
-  animation:arrowMove 1.3s infinite;
+  animation:arrowMove 1.4s infinite;
 }
 
-/* ANIMATIONS */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(24px);}
-  to{opacity:1;transform:none;}
-}
-
-@keyframes fadeName{
-  to{opacity:1;transform:none;}
-}
-
-@keyframes fadeIn{
-  to{opacity:1;}
-}
-
+/* ARROW ANIMATION */
 @keyframes arrowMove{
   0%{transform:rotate(-45deg) translate(0,0);}
   50%{transform:rotate(-45deg) translate(0,6px);}
@@ -211,10 +192,8 @@
 /* RESPONSIVE */
 @media(max-width:360px){
   .opening-name{font-size:34px;}
-  .opening-ornament{width:220px;}
+  .opening-ornament{width:210px;}
 }
-
-
         /* BACKGROUND FOTO UMUM */
     .bg-photo{
   position:relative;
@@ -528,17 +507,23 @@ footer{
 </head>
 <body>
 
-<!-- OPENING -->
-<section class="opening parallax" id="open">
+<!-- OPENING / COVER -->
+<section class="opening cinematic bg-photo"
+  style="background-image:url('img/bg-opening.jpg');">
+
   <div class="opening-inner">
 
-    <img src="ornament/ornament7.png" class="opening-ornament" alt="Ornament">
+    <span class="opening-subtitle">
+      THE WEDDING INVITATION
+    </span>
 
-    <span class="opening-subtitle">THE WEDDING INVITATION</span>
+    <div class="opening-orn-wrap">
+      <img src="ornament/ornament-opening.png" alt="" class="opening-orn">
+    </div>
 
     <h1 class="opening-name">
       <span class="name-part">Rany</span>
-      <span class="name-separator">&</span>
+      <span class="name-separator">&amp;</span>
       <span class="name-part">Agung</span>
     </h1>
 
@@ -546,9 +531,14 @@ footer{
 
     <p class="opening-date">25 April 2025</p>
 
-    <a href="#" id="btnOpen" class="btn">Buka Undangan</a>
-
   </div>
+
+  <div class="scroll-hint">
+    SWIPE UP
+    <span class="arrow"></span>
+  </div>
+
+</section>
 
   <!-- SCROLL HINT -->
   <div class="scroll-hint">
