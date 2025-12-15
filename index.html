@@ -217,32 +217,33 @@
 
         /* BACKGROUND FOTO UMUM */
     .bg-photo{
-      position:relative;
-      background-size:cover;
-      background-position:center;
-      background-repeat:no-repeat;
-      will-change: transform;
-    }
-    .bg-photo::before{
-      content:'';
-      position:absolute;
-      inset:0;
-      background:linear-gradient(
-        to bottom,
-        rgba(248,245,239,.55),
-        rgba(248,245,239,.75)
-      );
-    }
-    .bg-photo > *{position:relative;z-index:2;}
+  position:relative;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  overflow:hidden;
+}
 
-    /* PARALLAX BACKGROUND */
-    .parallax{
-      background-attachment: fixed;
-    }
+    /* CINEMATIC BACKGROUND */
+    .cinematic{
+  position:relative;
+}
 
-    @media(max-width:768px){
-      .parallax{background-attachment: scroll;} /* mobile friendly */
-    }
+.cine-content{
+  opacity:0;
+  transform:translateY(50px) scale(.96);
+  filter:blur(8px);
+  transition:
+    opacity .9s ease,
+    transform .9s cubic-bezier(.22,.61,.36,1),
+    filter .9s ease;
+}
+
+.cine-show{
+  opacity:1;
+  transform:none;
+  filter:blur(0);
+}
 
 /* REVEAL */
 #reveal{
@@ -286,6 +287,27 @@
   opacity:1;
   transform:scale(1);
 }
+.cinematic{
+  position:relative;
+  overflow:hidden;
+}
+
+.cine-content{
+  opacity:0;
+  transform:translateY(60px) scale(.96);
+  filter:blur(10px);
+  transition:
+    opacity .9s ease,
+    transform 1s cubic-bezier(.22,.61,.36,1),
+    filter .9s ease;
+}
+
+.cine-show{
+  opacity:1;
+  transform:none;
+  filter:blur(0);
+}
+
 
 /* POSISI ORNAMENT (TETAP MENYEBAR TAPI TERPUSAT) */
 .o1{transform:translate(-120px,-100px) scale(.9);width:120px}
@@ -555,41 +577,59 @@ footer{
 </div>
 </section>
 <!-- quotes -->
-<section class="quotes bg-photo parallax" style="background-image:url('ornament/ornament-bg.jpg');">
-  <p>
+<section class="quotes bg-photo cinematic" style="background-image:url('ornament/ornament-bg.jpg');">
+  <p class="cine-content">
     “Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri,
     supaya kamu merasa tenteram di sampingnya.”
   </p>
 </section>
 
 <!-- MEMPELAI PRIA -->
-<section class="mempelai bg-photo parallax" style="background-image:url('ornament/ornament-bg.jpg');">
-  <div class="photo-wrap">
-    <img src="img/mempelai-pria.jpg" class="photo">
-    <img src="ornament/sudut-ornament.png" class="ornament">
+<section class="mempelai bg-photo cinematic" style="background-image:url('ornament/background.jpg');">
+  <div class="cine-content">
+
+    <div class="photo-wrap">
+      <img src="img/mempelai-pria.jpg" class="photo" alt="Mempelai Pria">
+      <img src="ornament/sudut-ornament.png" class="ornament" alt="">
+    </div>
+
+    <h2>Agung</h2>
+    <p>
+      Putra dari Bapak ...<br>
+      & Ibu ...
+    </p>
+
   </div>
-  <h2>Agung</h2>
-  <p>Putra dari Bapak ...<br>& Ibu ...</p>
 </section>
 
 <!-- MEMPELAI WANITA -->
-<section class="mempelai bg-photo parallax" style="background-image:url('ornament/ornament-bg.jpg');">
-  <div class="photo-wrap">
-    <img src="img/mempelai-wanita.jpg" class="photo">
-    <img src="ornament/sudut-ornament.png" class="ornament">
+<section class="mempelai bg-photo cinematic" style="background-image:url('ornament/background.jpg');">
+  <div class="cine-content">
+
+    <div class="photo-wrap">
+      <img src="img/mempelai-wanita.jpg" class="photo" alt="Mempelai Wanita">
+      <img src="ornament/sudut-ornament.png" class="ornament" alt="">
+    </div>
+
+    <h2>Rany</h2>
+    <p>
+      Putri dari Bapak ...<br>
+      & Ibu ...
+    </p>
+
   </div>
-  <h2>Rany</h2>
-  <p>Putri dari Bapak ...<br>& Ibu ...</p>
 </section>
 
 <!-- COUNTDOWN -->
-<section class="countdown bg-photo parallax" style="background-image:url('ornament/ornament-bg.jpg');">
+<section class="countdown bg-photo cinematic" style="background-image:url('ornament/ornament-bg.jpg');">
+  <p class="cine-content">
   <h2>Menuju Hari Bahagia</h2>
   <div class="time" id="countdown"></div>
 </section>
 
 <!-- EVENT -->
-<section class="event bg-photo parallax" style="background-image:url('ornament/ornament-bg.jpg');">
+<section class="event bg-photo cinematic" style="background-image:url('ornament/ornament-bg.jpg');">
+  <p class="cine-content">
   <h2>Detail Acara</h2>
   <div class="card">
     <h3>Akad Nikah</h3>
@@ -602,14 +642,16 @@ footer{
 </section>
 
 <!-- MAPS -->
-<section class="maps bg-photo parallax" style="background-image:url('ornament/ornament-bg.jpg');">
+<section class="maps bg-photo cinematic" style="background-image:url('ornament/background.jpg');">
+  <p class="cine-content">
   <h2>Lokasi</h2>
   <iframe src="https://www.google.com/maps"></iframe>
   <a href="#" class="btn">Buka Maps</a>
 </section>
 
 <!-- GALLERY -->
-<section class="gallery bg-photo" style="background-image:url('ornament/ornament-bg.jpg');">
+<section class="gallery bg-photo cinematic" style="background-image:url('ornament/background.jpg');">
+  <p class="cine-content">
   <a href="img/gallery1.jpg" class="glightbox" download><img src="img/gallery1.jpg"></a>
   <a href="img/gallery2.jpg" class="glightbox" download><img src="img/gallery2.jpg"></a>
   <a href="img/gallery3.jpg" class="glightbox" download><img src="img/gallery3.jpg"></a>
@@ -617,7 +659,8 @@ footer{
 </section>
 
 <!-- RSVP -->
-<section class="rsvp bg-photo" style="background-image:url('ornament/ornament-bg.jpg');">
+<section class="rsvp bg-photo cinematic" style="background-image:url('ornament/ornament-bg.jpg');">
+  <p class="cine-content">
   <h2>Konfirmasi Kehadiran</h2>
   <input type="text" placeholder="Nama">
   <select><option>Hadir</option><option>Tidak Hadir</option></select>
@@ -626,16 +669,18 @@ footer{
 </section>
 
 <!-- AMPLOP -->
-<section class="gift bg-photo" style="background-image:url('ornament/ornament-bg.jpg');">
+<section class="gift bg-photo cinematic" style="background-image:url('ornament/ornament-bg.jpg');">
+  <p class="cine-content">
   <h2>Amplop Digital</h2>
   <div class="card">
     <p>BCA<br>1234567890<br>a.n Rany</p>
     <a class="btn">Salin</a>
   </div>
 </section>
+
 <!-- thankyou -->
-<section class="quotes bg-photo parallax" style="background-image:url('ornament/ornament-bg.jpg');">
-  <p>
+<section class="quotes bg-photo cinematic" style="background-image:url('ornament/ornament-bg.jpg');">
+  <p class="cine-content">
     Dengan penuh rasa syukur dan bahagia, kami mengucapkan terima kasih atas doa,
     cinta, dan restu yang diberikan kepada kami.
   </p>
@@ -827,15 +872,22 @@ if (revealSection) ornamentObserver.observe(revealSection);
 
 
   /* =====================
-     PARALLAX EFFECT
+     CINEMATIC EFFECT
   ===================== */
-  const parallaxSections = document.querySelectorAll('.parallax');
-  window.addEventListener('scroll', () => {
-    const scrollY = window.pageYOffset;
-    parallaxSections.forEach(sec => {
-      sec.style.backgroundPositionY = `${scrollY * 0.3}px`;
-    });
+  const cineItems = document.querySelectorAll('.cine-content');
+
+const cineObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('cine-show');
+      cineObserver.unobserve(entry.target);
+    }
   });
+}, {
+  threshold: 0.3
+});
+
+cineItems.forEach(item => cineObserver.observe(item));
 
 
   /* =====================
