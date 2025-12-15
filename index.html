@@ -71,141 +71,46 @@
      /* OPENING SECTION */
 .opening{
   position:relative;
-  min-height:100vh;
+  min-height:100svh;
+  width:100%;
+  overflow:hidden;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:url('img/bg-opening.jpg') center center / cover no-repeat;
-  overflow:hidden;
+  text-align:center;
 }
 
-/* overlay lembut */
-.opening::before{
-  content:'';
+/* FOTO */
+.opening-bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;       /* 🔥 FOTO IKUT LAYAR */
+  object-position:center top;
+  z-index:1;
+}
+
+/* GRADIENT */
+.opening-overlay{
   position:absolute;
   inset:0;
   background:linear-gradient(
     to bottom,
-    rgba(248,245,239,.4),
+    rgba(248,245,239,.25),
     rgba(248,245,239,.9)
   );
+  z-index:2;
 }
 
-/* CONTENT WRAPPER – CENTER MATI */
+/* CONTENT */
 .opening-inner{
   position:relative;
-  z-index:2;
-  width:100%;
+  z-index:3;
   max-width:420px;
   padding:20px;
-  text-align:center;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  /* trik visual center */
-  transform:translateY(12px);
 }
 
-/* ORNAMENT */
-.opening-ornament{
-  width:240px;
-  margin-bottom:14px;
-  opacity:.9;
-}
-
-/* SUBTITLE */
-.opening-subtitle{
-  display:block;
-  font-size:11px;
-  letter-spacing:3px;
-  margin-bottom:6px;
-  opacity:.85;
-}
-
-/* NAME */
-.opening-name{
-  font-family:'Playfair Display',serif;
-  font-size:38px;
-  line-height:1.15;
-  margin-bottom:10px;
-}
-
-/* NAME PART (fade satu-satu tetap aman) */
-.name-part,
-.name-separator{
-  display:inline-block;
-}
-
-/* DIVIDER */
-.opening-divider{
-  width:54px;
-  height:1px;
-  background:#7A8F7A;
-  margin:10px auto;
-  opacity:.6;
-}
-
-/* DATE */
-.opening-date{
-  font-size:13px;
-  letter-spacing:1px;
-  margin-bottom:18px;
-}
-
-/* BUTTON */
-.opening .btn{
-  margin-top:6px;
-}
-
-/* SCROLL HINT */
-.scroll-hint{
-  position:absolute;
-  bottom:26px;
-  left:50%;
-  transform:translateX(-50%);
-  text-align:center;
-  font-size:10px;
-  letter-spacing:2px;
-  opacity:.7;
-}
-
-.scroll-hint .arrow{
-  width:12px;
-  height:12px;
-  border-left:2px solid #7A8F7A;
-  border-bottom:2px solid #7A8F7A;
-  transform:rotate(-45deg);
-  margin:6px auto 0;
-  animation:arrowMove 1.4s infinite;
-}
-
-/* ARROW ANIMATION */
-@keyframes arrowMove{
-  0%{transform:rotate(-45deg) translate(0,0);}
-  50%{transform:rotate(-45deg) translate(0,6px);}
-  100%{transform:rotate(-45deg) translate(0,0);}
-}
-
-/* RESPONSIVE */
-@media (max-width:480px){
-  .bg-photo,
-  .opening{
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-  }
-}
-.opening{
-  animation: openingZoom 18s ease-in-out infinite alternate;
-}
-
-@keyframes openingZoom{
-  from{background-size:100%;}
-  to{background-size:108%;}
-}
         /* BACKGROUND FOTO UMUM */
     .bg-photo{
   position:relative;
@@ -520,34 +425,34 @@ footer{
 <body>
 
 <!-- OPENING / COVER -->
-<section class="opening cinematic bg-photo"
-  style="background-image:url('img/bg-opening.jpg');">
+<section class="opening" id="open">
 
+  <!-- FOTO -->
+  <img src="img/bg-opening.jpg" class="opening-bg" alt="">
+
+  <!-- GRADIENT -->
+  <div class="opening-overlay"></div>
+
+  <!-- CONTENT -->
   <div class="opening-inner">
+    <img src="ornament/ornament7.png" class="opening-ornament">
 
-    <span class="opening-subtitle">
-      THE WEDDING INVITATION
-    </span>
-
-    <div class="opening-orn-wrap">
-      <img src="ornament/ornament-opening.png" alt="" class="opening-orn">
-    </div>
+    <span class="opening-subtitle">THE WEDDING INVITATION</span>
 
     <h1 class="opening-name">
       <span class="name-part">Rany</span>
-      <span class="name-separator">&amp;</span>
+      <span class="name-separator">&</span>
       <span class="name-part">Agung</span>
     </h1>
 
     <div class="opening-divider"></div>
-
     <p class="opening-date">25 April 2025</p>
-
+    <a href="#" id="btnOpen" class="btn">Buka Undangan</a>
   </div>
 
   <div class="scroll-hint">
-    SWIPE UP
-    <span class="arrow"></span>
+    <span>SWIPE UP</span>
+    <div class="arrow"></div>
   </div>
 
 </section>
