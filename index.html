@@ -190,9 +190,21 @@
 }
 
 /* RESPONSIVE */
-@media(max-width:360px){
-  .opening-name{font-size:34px;}
-  .opening-ornament{width:210px;}
+@media (max-width:480px){
+  .bg-photo,
+  .opening{
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+  }
+}
+.opening{
+  animation: openingZoom 18s ease-in-out infinite alternate;
+}
+
+@keyframes openingZoom{
+  from{background-size:100%;}
+  to{background-size:108%;}
 }
         /* BACKGROUND FOTO UMUM */
     .bg-photo{
