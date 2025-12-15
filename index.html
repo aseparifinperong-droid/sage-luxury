@@ -91,26 +91,121 @@
   z-index:1;
 }
 
-/* GRADIENT */
-.opening-overlay{
+/* overlay lembut */
+.opening::before{
+  content:'';
   position:absolute;
   inset:0;
   background:linear-gradient(
     to bottom,
-    rgba(248,245,239,.25),
+    rgba(248,245,239,.4),
     rgba(248,245,239,.9)
   );
-  z-index:2;
 }
 
-/* CONTENT */
+/* CONTENT WRAPPER – CENTER MATI */
 .opening-inner{
   position:relative;
-  z-index:3;
+  z-index:2;
+  width:100%;
   max-width:420px;
   padding:20px;
+  text-align:center;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  /* trik visual center */
+  transform:translateY(12px);
 }
 
+/* ORNAMENT */
+.opening-ornament{
+  width:240px;
+  margin-bottom:14px;
+  opacity:.9;
+}
+
+/* SUBTITLE */
+.opening-subtitle{
+  display:block;
+  font-size:11px;
+  letter-spacing:3px;
+  margin-bottom:6px;
+  opacity:.85;
+}
+
+/* NAME */
+.opening-name{
+  font-family:'Playfair Display',serif;
+  font-size:38px;
+  line-height:1.15;
+  margin-bottom:10px;
+}
+
+/* NAME PART (fade satu-satu tetap aman) */
+.name-part,
+.name-separator{
+  display:inline-block;
+}
+
+/* DIVIDER */
+.opening-divider{
+  width:54px;
+  height:1px;
+  background:#7A8F7A;
+  margin:10px auto;
+  opacity:.6;
+}
+
+/* DATE */
+.opening-date{
+  font-size:13px;
+  letter-spacing:1px;
+  margin-bottom:18px;
+}
+
+/* BUTTON */
+.opening .btn{
+  margin-top:6px;
+}
+
+/* SCROLL HINT */
+.scroll-hint{
+  position:absolute;
+  bottom:26px;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+  font-size:10px;
+  letter-spacing:2px;
+  opacity:.7;
+}
+
+.scroll-hint .arrow{
+  width:12px;
+  height:12px;
+  border-left:2px solid #7A8F7A;
+  border-bottom:2px solid #7A8F7A;
+  transform:rotate(-45deg);
+  margin:6px auto 0;
+  animation:arrowMove 1.4s infinite;
+}
+
+/* ARROW ANIMATION */
+@keyframes arrowMove{
+  0%{transform:rotate(-45deg) translate(0,0);}
+  50%{transform:rotate(-45deg) translate(0,6px);}
+  100%{transform:rotate(-45deg) translate(0,0);}
+}
+
+/* RESPONSIVE */
+@media(max-width:360px){
+  .opening-name{font-size:34px;}
+  .opening-ornament{width:210px;}
+}
         /* BACKGROUND FOTO UMUM */
     .bg-photo{
   position:relative;
