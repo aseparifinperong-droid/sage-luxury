@@ -90,19 +90,17 @@
   object-position:center top;
   z-index:1;
 }
-
-/* overlay lembut */
-.opening::before{
-  content:'';
+/* GRADIENT */
+.opening-overlay{
   position:absolute;
   inset:0;
   background:linear-gradient(
     to bottom,
-    rgba(248,245,239,.4),
+    rgba(248,245,239,.25),
     rgba(248,245,239,.9)
   );
+  z-index:2;
 }
-
 /* CONTENT WRAPPER – CENTER MATI */
 .opening-inner{
   position:relative;
@@ -215,53 +213,85 @@
   overflow:hidden;
 }
 
-    /* CINEMATIC BACKGROUND */
-    .cinematic{
-  position:relative;
-}
 
-.cine-content{
-  opacity:0;
-  transform:translateY(50px) scale(.96);
-  filter:blur(8px);
-  transition:
-    opacity .9s ease,
-    transform .9s cubic-bezier(.22,.61,.36,1),
-    filter .9s ease;
-}
-
-.cine-show{
-  opacity:1;
-  transform:none;
-  filter:blur(0);
-}
-
-/* REVEAL */
+/* =======================
+   REVEAL SECTION
+======================= */
 #reveal{
   background:var(--ivory);
-  flex-direction:column;
-  overflow:hidden;
-  opacity:1!important;
-  transform:none!important;
-  position:relative;
-}
-
-#reveal.fade-out{
-  opacity:0;
-  transform:translateY(-40px);
-  pointer-events:none;
-  transition:opacity .6s ease, transform .6s ease;
-}
-
-/* LAYER ORNAMENT */
-.ornament-layer{
   position:relative;
   width:100%;
-  height:60vh;
+  height:100vh;
+  overflow:hidden;
+}
+
+/* =======================
+   ORNAMENT LAYER (TEMPEL)
+======================= */
+.ornament-layer{
+  position:absolute;
+  inset:0;
   display:flex;
   align-items:center;
   justify-content:center;
+  transform:scale(1.25);           /* BESARKAN SEKALIGUS */
+  transform-origin:center;
 }
+
+/* Semua ornament ukuran SAMA */
+.ornament-layer .orn{
+  width:220px;
+}
+/* =======================
+   POSISI ORNAMENT
+======================= */
+.o1{transform:translate(-140px,-120px)}
+.o2{transform:translate(140px,-120px)}
+.o3{transform:translate(-180px,80px)}
+.o4{transform:translate(180px,80px)}
+.o5{transform:translate(0,0)}
+.o6{transform:translate(0,-200px)}
+.o7{transform:translate(220px,0)}
+.o8{transform:translate(-220px,0)}
+
+/* =======================
+   TEKS
+======================= */
+.reveal-text{
+  position:absolute;
+  z-index:10;
+  text-align:center;
+  opacity:0;
+  transform:translateY(20px);
+  transition:.8s ease;
+}
+
+.reveal-text.show{
+  opacity:1;
+  transform:none;
+}
+
+.reveal-text span{
+  display:block;
+  font-size:clamp(12px,3vw,16px);
+  letter-spacing:2px;
+  margin-bottom:6px;
+}
+
+.reveal-text h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(32px,8vw,48px);
+}
+
+/* =======================
+   MOBILE ADJUSTMENT
+======================= */
+@media(max-width:768px){
+  .ornament-layer{
+    transform:scale(1.35);
+  }
+}
+
 
 /* ORNAMENT UMUM */
 .orn{
@@ -299,43 +329,6 @@
   filter:blur(0);
 }
 
-
-/* POSISI ORNAMENT (TETAP MENYEBAR TAPI TERPUSAT) */
-.o1{transform:translate(-120px,-100px) scale(.9);width:120px}
-.o2{transform:translate(140px,-90px) scale(.9);width:90px}
-.o3{transform:translate(-160px,80px) scale(.9);width:110px}
-.o4{transform:translate(150px,100px) scale(.9);width:80px}
-.o5{transform:translate(0,0) scale(.9);width:100px}
-.o6{transform:translate(0,-160px) scale(.9);width:70px}
-.o7{transform:translate(180px,0) scale(.9);width:90px}
-.o8{transform:translate(-180px,0) scale(.9);width:60px}
-
-/* TEKS DI ATAS ORNAMENT */
-.reveal-text{
-  position:absolute;
-  z-index:5;
-  text-align:center;
-  opacity:0;
-  transform:translateY(20px);
-  transition:.8s ease;
-}
-
-.reveal-text.show{
-  opacity:1;
-  transform:none;
-}
-
-.reveal-text span{
-  display:block;
-  font-size:12px;
-  letter-spacing:2px;
-  margin-bottom:6px;
-}
-
-.reveal-text h2{
-  font-family:'Playfair Display',serif;
-  font-size:32px;
-}
 
     /* QUOTES */
 .quotes{
@@ -479,42 +472,42 @@ footer{
   font-size:20px;
   z-index:999;
 }
-/* FORCE BACKGROUND RATIO 780x1688 (9:19) */
+/* FORCE RATIO HANYA UNTUK SECTION FOTO */
 .bg-photo,
-.opening,
-#reveal{
+.opening{
   min-height:100vh;
   aspect-ratio:780 / 1688;
   background-size:cover;
   background-position:center center;
 }
 
-/* JAGA RATIO DI LAYAR TINGGI */
+/* REVEAL HARUS FULL LAYAR ASLI */
+#reveal{
+  aspect-ratio:auto !important;
+  width:100vw;
+  height:100vh;
+}
+
+
+/* JAGA RATIO HANYA UNTUK SECTION FOTO */
 @media (min-aspect-ratio: 9/19){
   .bg-photo,
-  .opening,
-  #reveal{
+  .opening{
     background-size:auto 100%;
   }
 }
 
-/* JAGA RATIO DI LAYAR LEBAR */
 @media (max-aspect-ratio: 9/19){
   .bg-photo,
-  .opening,
-  #reveal{
+  .opening{
     background-size:100% auto;
   }
 }
-@media (max-width:480px){
-  .bg-photo,
-  .opening{
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-color:var(--ivory);
-  }
-}
 
+/* FIX REVEAL FULL SCREEN (WAJIB) */
+#reveal{
+  opacity: 1 !important;
+}
   </style>
 </head>
 <body>
@@ -530,8 +523,6 @@ footer{
 
   <!-- CONTENT -->
   <div class="opening-inner">
-    <img src="ornament/ornament7.png" class="opening-ornament">
-
     <span class="opening-subtitle">THE WEDDING INVITATION</span>
 
     <h1 class="opening-name">
@@ -544,39 +535,29 @@ footer{
     <p class="opening-date">25 April 2025</p>
     <a href="#" id="btnOpen" class="btn">Buka Undangan</a>
   </div>
-
-  <div class="scroll-hint">
-    <span>SWIPE UP</span>
-    <div class="arrow"></div>
-  </div>
-
 </section>
 
-  <!-- SCROLL HINT -->
-  <div class="scroll-hint">
-    <span>SWIPE UP</span>
-    <div class="arrow"></div>
-  </div>
-</section>
 <!-- VISUAL REVEAL -->
-<section class="reveal" id="reveal">
- <div class="ornament-layer">
+<section id="reveal">
 
-  <div class="reveal-text">
-    <span>THE WEDDING INVITATION</span>
-    <h2>Rany & Agung</h2>
+  <div class="ornament-layer">
+
+    <div class="reveal-text show">
+      <span>THE WEDDING INVITATION</span>
+      <h2>Rany & Agung</h2>
+    </div>
+
+    <img src="ornament/ornament1.jpg" class="orn o1">
+    <img src="ornament/ornament2.png" class="orn o2">
+    <img src="ornament/ornament3.png" class="orn o3">
+    <img src="ornament/ornament4.png" class="orn o4">
+    <img src="ornament/ornament5.png" class="orn o5">
+    <img src="ornament/ornament6.png" class="orn o6">
+    <img src="ornament/ornament7.png" class="orn o7">
+    <img src="ornament/ornament8.png" class="orn o8">
+
   </div>
 
-  <img src="ornament/ornament1.jpg" class="orn o1">
-  <img src="ornament/ornament2.png" class="orn o2">
-  <img src="ornament/ornament3.png" class="orn o3">
-  <img src="ornament/ornament4.png" class="orn o4">
-  <img src="ornament/ornament5.png" class="orn o5">
-  <img src="ornament/ornament6.png" class="orn o6">
-  <img src="ornament/ornament7.png" class="orn o7">
-  <img src="ornament/ornament8.png" class="orn o8">
-
-</div>
 </section>
 <!-- quotes -->
 <section class="quotes bg-photo cinematic" style="background-image:url('ornament/ornament-bg.jpg');">
