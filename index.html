@@ -342,6 +342,16 @@ footer{
   background-position:center center;
 }
 
+/* FORCE BACKGROUND RATIO 780x1688 (9:19) */
+.bg-photo,
+.opening,
+#reveal{
+  min-height:100vh;
+  aspect-ratio:780 / 1688;
+  background-size:cover;
+  background-position:center center;
+}
+
 /* JAGA RATIO DI LAYAR TINGGI */
 @media (min-aspect-ratio: 9/19){
   .bg-photo,
@@ -359,7 +369,6 @@ footer{
     background-size:100% auto;
   }
 }
-
 @media (max-width:480px){
   .bg-photo,
   .opening{
@@ -368,6 +377,7 @@ footer{
     background-color:var(--ivory);
   }
 }
+
   </style>
 </head>
 <body>
@@ -699,3 +709,4 @@ if (revealSection) ornamentObserver.observe(revealSection);
 </body>
 
 </html>
+
