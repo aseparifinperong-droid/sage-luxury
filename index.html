@@ -225,22 +225,39 @@
   overflow:hidden;
 }
 
-/* =======================
-   ORNAMENT LAYER (TEMPEL)
-======================= */
-.ornament-layer{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transform:scale(2);           /* BESARKAN SEKALIGUS */
-  transform-origin:center;
+/* Container ornament full screen */
+.ornament-layer {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
 }
 
-/* Semua ornament ukuran SAMA */
-.ornament-layer .orn{
-  width:220px;
+/* Semua ornament */
+.ornament-layer .orn {
+  position: absolute;
+  width: 100%;       /* Ikuti lebar container */
+  height: auto;      /* Biarkan proporsional */
+  max-width: 780px;  /* Optional, agar tidak melebihi resolusi asli */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  opacity: 0;
+  transform: scale(1); /* Bisa animasi nanti */
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+/* Animasi tampil */
+.ornament-layer .orn.show {
+  opacity: 1;
+  transform: scale(1);
 }
 /* =======================
    POSISI ORNAMENT
